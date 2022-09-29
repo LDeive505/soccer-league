@@ -3,6 +3,7 @@ module.exports = {
     await queryInterface.createTable('matches', {
       id: {
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER,
       },
       home_team: {
@@ -30,7 +31,8 @@ module.exports = {
         allowNull: false,
       },
       in_progress: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
       }
     });
   },
