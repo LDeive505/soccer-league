@@ -9,7 +9,6 @@ export default class UserServices {
   public async login(login: Login): Promise<LoginToken | null> {
     const { email, password } = login;
     const user = await this.userModel.findOne({ where: { email } });
-    console.log(user);
     if (!user) return null;
 
     const encripted = user.password;

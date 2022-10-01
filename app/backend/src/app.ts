@@ -10,7 +10,6 @@ class App {
     this.config();
     this.app.use('/login', loginRoutes);
     this.app.get('/', (_req, res) => res.json({ ok: true }));
-    this.app.post('/login', (_req, res) => res.json({ ok: true }));
   }
 
   private config():void {
