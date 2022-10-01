@@ -14,6 +14,6 @@ export type Login = {
 export type LoginToken = string;
 
 export type userPayload = {
-  id?: number,
+  role: string,
   email: string,
 };

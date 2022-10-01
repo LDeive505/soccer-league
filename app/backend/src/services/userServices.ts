@@ -16,7 +16,7 @@ export default class UserServices {
     const validPassword = await bcrypt.compare(password, encripted);
     if (!validPassword) throw new ApiError('Incorrect email or password', 401);
 
-    const token = tokenGenerator({ email, id: user.id });
+    const token = tokenGenerator({ email, role: user.role });
     return token as LoginToken;
   }
 }
