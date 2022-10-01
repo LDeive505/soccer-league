@@ -1,10 +1,9 @@
 import { RequestHandler } from 'express';
+import ApiError from '../errors/ApiError';
 
 const loginValidation: RequestHandler = (req, res, next) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({ message: 'All fields must be filled' });
-  }
+  if (!email || !password) throw new ApiError('All fields must be filled', 400);
   next();
 };
 

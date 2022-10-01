@@ -1,4 +1,6 @@
 import * as express from 'express';
+import errorHandler from './middlewares/errorHandler';
+import 'express-async-errors';
 import loginRoutes from './routes/loginRoutes';
 
 class App {
@@ -10,6 +12,7 @@ class App {
     this.config();
     this.app.use('/login', loginRoutes);
     this.app.get('/', (_req, res) => res.json({ ok: true }));
+    this.app.use(errorHandler);
   }
 
   private config():void {
