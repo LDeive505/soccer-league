@@ -3,9 +3,6 @@ import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http'); 
 import { app } from '../app';
-import userModel from '../database/models/User';
-import { User } from '../types/UserTypes';
-import { Response } from 'superagent';
 
 
 const { expect } = chai;
@@ -15,7 +12,7 @@ const invalidLoginMock = { email: 'zyzz@email', password: '123456' };
 
 chai.use(chaiHttp);
 
-describe('1 - Test login route', async () => {
+describe('1 - Test /login routes', async () => {
   describe('1.1 - Test login route with valid credentials', async () => {
     it('Should return status code 200', async () => {
       const response = await chai.request(app).post('/login').send(loginMock);
@@ -28,7 +25,7 @@ describe('1 - Test login route', async () => {
     });
   });
 
-  describe('1.2 - Test login route without credentials', async () => {
+  describe('1.3 - Test login route without credentials', async () => {
     it('Should return status code 400', async () => {
       const response = await chai.request(app).post('/login');
       expect(response.status).to.be.equal(400);
