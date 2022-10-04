@@ -7,6 +7,9 @@ const router = Router();
 
 const matchControllers = new MatchControllers(new MatchServices(Match));
 
-router.get('/', matchControllers.getMatches);
+router.route('/')
+  .get(matchControllers.getMatches)
+  .post(matchControllers.createMatch)
+  .patch(matchControllers.updateMatch);
 
 export default router;

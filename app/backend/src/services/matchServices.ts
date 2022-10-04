@@ -6,6 +6,11 @@ import Team from '../database/models/Team';
 export default class TeamServices {
   constructor(private matchModel: typeof MatchModel) {}
 
+  public async create(match: Match): Promise<Match> {
+    const matchCreated = await this.matchModel.create(match);
+    return matchCreated;
+  }
+
   public async getAll(): Promise<Match[]> {
     const matches = await this.matchModel.findAll({
       include: [
@@ -34,5 +39,14 @@ export default class TeamServices {
     }
     const matches = await this.getAll();
     return matches;
+  }
+
+  public async update(id: string): Promise<boolean> {
+    const match = await this.matchModel.findByPk(id);
+    if (!match) throw new ApiError('Match not found', 404);
+
+    const updatedMatch = await this.matchModel.update({ inProgress: false }, { where: { id } });
+    console.log(updatedMatch);
+    return true;
   }
 }
