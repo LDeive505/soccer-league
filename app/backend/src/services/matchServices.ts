@@ -26,4 +26,13 @@ export default class TeamServices {
     if (!matches) throw new ApiError('No matches found', 404);
     return matches;
   }
+
+  public async getMatches(onGoing: string | undefined): Promise<Match[]> {
+    if (onGoing) {
+      const matches = await this.getByQuery(onGoing === 'true');
+      return matches;
+    }
+    const matches = await this.getAll();
+    return matches;
+  }
 }
