@@ -7,6 +7,11 @@ export default class TeamServices {
   constructor(private matchModel: typeof MatchModel) {}
 
   public async create(match: Match): Promise<Match> {
+    const { homeTeam: homeId, awayTeam: awayId } = match;
+    const homeTeam = await Team.findByPk(homeId);
+    const awayTeam = await Team.findByPk(awayId);
+    if (!homeTeam || !awayTeam) throw new ApiError('There is no team with such id!', 404);
+
     const matchCreated = await this.matchModel.create(match);
     return matchCreated;
   }
