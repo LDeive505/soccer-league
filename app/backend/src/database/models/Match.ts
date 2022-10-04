@@ -5,9 +5,9 @@ import Team from './Team';
 class Match extends Model {
   id!: number;
   homeTeam!: number;
-  homeTeamScore!: number;
+  homeTeamGoals!: number;
   awayTeam!: number;
-  awayTeamScore!: number;
+  awayTeamGoals!: number;
   inProgress!: boolean;
 }
 

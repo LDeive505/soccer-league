@@ -17,7 +17,13 @@ export default class userControllers {
 
   public updateMatch: RequestHandler = async (req, res) => {
     const { id } = req.params;
-    await this.matchServices.update(id);
+    await this.matchServices.update(id, req.body);
+    return res.status(200).json({ message: 'Goals updated' });
+  };
+
+  public finishMatch: RequestHandler = async (req, res) => {
+    const { id } = req.params;
+    await this.matchServices.finish(id);
     return res.status(200).json({ message: 'Finished' });
   };
 }

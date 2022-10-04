@@ -1,8 +1,13 @@
 export type Match = {
   id?: number,
   homeTeam: number,
-  homeTeamScore: number,
+  homeTeamGoals: number,
   awayTeam: number,
-  awayTeamScore: number,
+  awayTeamGoals: number,
   inProgress: boolean;
+};
+
+export type matchGoals = {
+  homeTeamGoals: number,
+  awayTeamGoals: number,
 };

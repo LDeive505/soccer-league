@@ -13,6 +13,7 @@ router.route('/')
   .get(matchControllers.getMatches)
   .post(tokenValidator, matchValidator, matchControllers.createMatch);
 
-router.route('/:id/finish').patch(matchControllers.updateMatch);
+router.route('/:id/finish').patch(matchControllers.finishMatch);
+router.route('/:id').patch(matchControllers.updateMatch);
 
 export default router;

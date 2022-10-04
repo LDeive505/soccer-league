@@ -1,5 +1,5 @@
 import ApiError from '../errors/ApiError';
-import { Match } from '../types/Match';
+import { Match, matchGoals } from '../types/Match';
 import MatchModel from '../database/models/Match';
 import Team from '../database/models/Team';
 
@@ -46,12 +46,20 @@ export default class TeamServices {
     return matches;
   }
 
-  public async update(id: string): Promise<boolean> {
+  public async update(id: string, goals: matchGoals): Promise<boolean> {
     const match = await this.matchModel.findByPk(id);
     if (!match) throw new ApiError('Match not found', 404);
 
-    const updatedMatch = await this.matchModel.update({ inProgress: false }, { where: { id } });
-    console.log(updatedMatch);
+    const { homeTeamGoals, awayTeamGoals } = goals;
+    await this.matchModel.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+    return true;
+  }
+
+  public async finish(id: string): Promise<boolean> {
+    await this.matchModel.update({ inProgress: false }, { where: { id } });
     return true;
   }
 }
