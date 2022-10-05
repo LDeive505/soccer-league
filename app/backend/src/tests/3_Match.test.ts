@@ -5,7 +5,7 @@ import chaiHttp = require('chai-http');
 import { app } from '../app';
 import matchesMock from './mocks/matches';
 import { Response } from 'superagent';
-// import matchModel from '../database/models/Match';
+import matchModel from '../database/models/Match';
 
 const { expect } = chai;
 
@@ -43,7 +43,6 @@ describe('3 - Test /matches routes', async () => {
     });
 
     it('with all matches in progress in the database', async () => {
-      expect(response.body).to.be.a('array');
       expect(response.body).to.be.deep.equal(inProgressMock);
     });
   });
@@ -62,6 +61,24 @@ describe('3 - Test /matches routes', async () => {
     it('with all finished matches', async () => {
       expect(response.body).to.be.a('array');
       expect(response.body).to.be.deep.equal(notInProgressMock);
+    });
+  });
+
+  describe('3.4 - Test /matches/:id/finish route with PATCH method to update a match score', async () => {
+    let response: Response;
+
+    before(async () => {
+      sinon.stub(matchModel, 'update').resolves([1] as any);
+      response = await chai.request(app).patch('/matches/1/finish');
+    });
+
+    it('Should return status code 200', async () => {
+      expect(response.status).to.be.equal(200);
+    });
+
+    it('with a message confirming the match has finished', async () => {
+      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.deep.equal({ message: 'Finished' });
     });
   });
 
