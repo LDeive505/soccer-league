@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import TeamServices from '../services/teamServices';
 
-export default class userControllers {
+export default class TeamControllers {
   constructor(private teamServices: TeamServices) {}
 
   public getAllTeams: RequestHandler = async (_req, res) => {

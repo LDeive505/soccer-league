@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import UserServices from '../services/userServices';
 
-export default class userControllers {
+export default class UserControllers {
   constructor(private userServices: UserServices) {}
 
   public login: RequestHandler = async (req, res) => {

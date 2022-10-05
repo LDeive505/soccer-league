@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import MatchServices from '../services/matchServices';
 
-export default class userControllers {
+export default class MatchControllers {
   constructor(private matchServices: MatchServices) {}
 
   public createMatch: RequestHandler = async (req, res) => {
