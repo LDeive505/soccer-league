@@ -37,11 +37,3 @@ WHERE
     m.in_progress = 0
 GROUP BY t.team_name
 ORDER BY totalVictories DESC, goalsBalance DESC, goalsFavor DESC , goalsOwn DESC;`;
-
-/*
-  props: {
-    totalPoints
-    goalsBalance
-    efficiency
-  }
-*/
