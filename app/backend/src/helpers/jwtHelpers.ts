@@ -9,6 +9,6 @@ export const tokenGenerator = (payload: userPayload): LoginToken => {
 };
 
 export const validator = (token: LoginToken): userPayload => {
-  const payload = jwt.verify(token, process.env.JWT_SECRET as string) as userPayload;
+  const payload = jwt.verify(token, secret) as userPayload;
   return payload;
 };
