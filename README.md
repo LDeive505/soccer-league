@@ -1,4 +1,4 @@
-# 🚧 README em construção 🚧
+README
 
 <!-- Olá, Tryber!
 
